@@ -28,7 +28,10 @@ public class KeyInput : MonoBehaviour
     [SerializeField] private TextMeshProUGUI EnterMessage;
     [SerializeField] private TextMeshProUGUI RecordMessage;
     [SerializeField] private TextMeshProUGUI Track1Message;
+    [SerializeField] private TextMeshProUGUI Track1SavedMessage;
+    [SerializeField] private TextMeshProUGUI Track2SavedMessage;
     [SerializeField] private TextMeshProUGUI Track2Message;
+    [SerializeField] private TextMeshProUGUI SpacebarMessage;
     [SerializeField] private Image SpaceBar;
     [SerializeField] private Image Track1;
     [SerializeField] private float msgDuration = 1.5f;
@@ -125,6 +128,7 @@ public class KeyInput : MonoBehaviour
         }
         Debug.Log("Recording Started");
         RecordMessage.gameObject.SetActive(true);
+        SpacebarMessage.gameObject.SetActive(false);
     }
 
     void StopRecording()
@@ -132,10 +136,12 @@ public class KeyInput : MonoBehaviour
         activateRecording = false;
         if (savedTrack1.Count == 0)
         {
+            Track1SavedMessage.gameObject.SetActive(true);
             savedTrack1 = new List<spaceBarRecord>(recordedKeys);
         }
         else
         {
+            Track2SavedMessage.gameObject.SetActive(true);
             savedTrack2 = new List<spaceBarRecord>(recordedKeys);
         }
         foreach (KeyObject k in keys)
@@ -143,6 +149,7 @@ public class KeyInput : MonoBehaviour
 
             k.KeyAud.Stop();
             RecordMessage.gameObject.SetActive(false);
+            SpacebarMessage.gameObject.SetActive(true);
         }
 
         KeyObject spaceKey = FindKeyObject(recorder);
