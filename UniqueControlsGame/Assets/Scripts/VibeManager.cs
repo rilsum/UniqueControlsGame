@@ -5,7 +5,7 @@ public class VibeManager : MonoBehaviour
 {
 
     [SerializeField] private TextMeshProUGUI genreText;
-    private string[] genres = {"Joyfull", "Sad", "Brainrotttt", "DANGERRRRRR"};
+    private string[] genres = {"Joyfull", "Sad", "Angry", "Chaotic", "Random"};
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
